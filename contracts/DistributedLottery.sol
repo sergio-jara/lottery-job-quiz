@@ -32,8 +32,8 @@ contract DistributedLottery {
 
     function random() public view returns(uint) {
         // An attempt to generate a random number corresponding to an index of the players array
-        // TODO: Use an off chain solution as this one has inherent security flaws like a block miner
-        // rejecting a winning block that won't favour them...
+        // TODO: Use an off chain solution as this one has inherent security flaws like a malicious miner
+        // altering the block diffuculty and timestamp values till they won the lottery...
         return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players.length)));
     }
 
