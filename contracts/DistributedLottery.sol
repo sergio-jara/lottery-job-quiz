@@ -37,7 +37,7 @@ contract DistributedLottery {
         return uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, players.length)));
     }
 
-    function pickWinner() public view returns(address) {
+    function pickWinner() public {
         // Only contract owner can pick winner
         require(msg.sender == manager, "You do not have the permission to perform this operation");
 
@@ -47,7 +47,13 @@ contract DistributedLottery {
         uint r = random();
         address payable winner;
 
+        // Pick Winner
         uint index = r % players.length;
-        return winner = players[index];
+        winner = players[index];
+
+        // Transfer funds to winner
+        winner.transfer(getBalance());
+
+
     }
 }
