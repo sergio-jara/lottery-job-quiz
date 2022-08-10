@@ -54,6 +54,7 @@ contract DistributedLottery {
         // Transfer funds to winner
         winner.transfer(getBalance());
 
-
+        // Reset lottery
+        players = new address payable[](0);
     }
 }
