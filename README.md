@@ -3,10 +3,11 @@
 
 ## Instructions 
 
-**1. Add participants to the system**
+1. **Add participants to the system**
 - **Each player must send 4 tRIF(ERC20)  to enter**
 - **Each account can only participate once.**
 - If the account sends more eth than what’s required, it should be refunded. 
+- The list of participants should be reset after the lottery ends
 2. **Only allow owner to start/end lottery manually**
 - Ownership of the Lottery contract should be transferable.
 3. **users will only be able to join if the lottery has been started.** 
