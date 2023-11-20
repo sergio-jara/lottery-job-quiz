@@ -34,7 +34,7 @@ describe("Distributed Lottery", function () {
     );
 
     const distributedLottery = await (
-      await DistributedLottery.deploy()
+      await DistributedLottery.deploy(tRIF.address)
     ).deployed();
 
     return { distributedLottery, tRIF, owner, account1, account2, account3 };
@@ -47,7 +47,19 @@ describe("Distributed Lottery", function () {
       const { distributedLottery, tRIF, owner, account1, account2, account3 } =
         await loadFixture(deployOneYearLockFixture);
 
-   
+        await(await tRIF.connect(account1).approve(distributedLottery.address, ethers.utils.parseEther("4"))).wait();
+        await(await tRIF.connect(account2).approve(distributedLottery.address, ethers.utils.parseEther("4"))).wait();
+        await(await tRIF.connect(account3).approve(distributedLottery.address, ethers.utils.parseEther("4"))).wait();
+
+        await(await distributedLottery.connect(owner).startLoterry()).wait();
+        await distributedLottery.connect(account1).enter();
+        await distributedLottery.connect(account2).enter();
+        await distributedLottery.connect(account3).enter();
+        await(await distributedLottery.connect(owner).endLottery()).wait();
+
+        console.log('acc1 balance:', await tRIF.balanceOf(account1.address));
+        console.log('acc2 balance:', await tRIF.balanceOf(account2.address));
+        console.log('acc3 balance:', await tRIF.balanceOf(account3.address));
     });
 
   });
