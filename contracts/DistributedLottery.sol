@@ -12,7 +12,7 @@ contract DistributedLottery {
 
     }
 
-    function startLoterry() external {
+    function startLotterry() external {
 
     }
 
