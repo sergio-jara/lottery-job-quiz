@@ -7,7 +7,7 @@ describe("Distributed Lottery", function () {
     // Contracts are deployed using the first signer/account by default
     const [owner, account1, account2, account3] = await ethers.getSigners();
 
-    const TRIF = await ethers.getContractFactory("tRIF");
+    const TRIF = await ethers.getContractFactory("TRIF");
     const tRIF = await (
       await TRIF.deploy(
         owner.address,
